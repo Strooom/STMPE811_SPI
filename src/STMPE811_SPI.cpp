@@ -1,15 +1,14 @@
 #include "STMPE811_SPI.h"
 
-#include <logging.h>
-
-extern uLog theLog;
+//#include <logging.h>
+//extern uLog theLog;
 
 STMPE811::STMPE811(uint8_t theChipSelect) : chipSelect{theChipSelect} {
 }
 
 void STMPE811::initialize()        // Based on AN2807, but adapted for polling io interrupt driven
 {
-    theLog.output(loggingLevel::Info, "STMPE811::initialize()");
+//    theLog.output(loggingLevel::Info, "STMPE811::initialize()");
 
     pinMode(chipSelect, OUTPUT);           // set chipSelect as output from MCU to STMPE
     digitalWrite(chipSelect, HIGH);        // disable chipSelect - active low signal
@@ -24,9 +23,9 @@ void STMPE811::initialize()        // Based on AN2807, but adapted for polling i
     }
 
     if (0x811 != getVersion()) {
-        theLog.output(loggingLevel::Error, "Could not Initialize STMPE811");
+//        theLog.output(loggingLevel::Error, "Could not Initialize STMPE811");
     } else {
-        theLog.snprintf(loggingLevel::Debug, "STMPE811 Version = 0x%04X, using SPI Mode %d", getVersion(), theSpiMode);
+//        theLog.snprintf(loggingLevel::Debug, "STMPE811 Version = 0x%04X, using SPI Mode %d", getVersion(), theSpiMode);
     }
 
     write8(ADC_CTRL1, 0b01001000);             // ADC conversion time in 80 clock ticks, 12-bit resolution, internal reference
