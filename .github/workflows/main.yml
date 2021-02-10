@@ -17,4 +17,5 @@ jobs:
       - uses: Arduino-CI/action@stable-1.x
         env:
           EXPECT_EXAMPLES: true
+          CUSTOM_INIT_SCRIPT: install.sh
 #          EXPECT_UNITTESTS: true

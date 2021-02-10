@@ -1,6 +1,6 @@
 #include "STMPE811_SPI.h"
 
-//#include <logging.h>
+#include <logging.h>
 //extern uLog theLog;
 
 STMPE811::STMPE811(uint8_t theChipSelect) : chipSelect{theChipSelect} {
