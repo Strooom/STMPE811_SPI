@@ -1,7 +1,9 @@
 #include <STMPE811_SPI.h>
+#include "logging.h"
 
 #define chipSelectPin 25
 
+uLog theLog;
 
 STMPE811 theTouchController(chipSelectPin);
 
