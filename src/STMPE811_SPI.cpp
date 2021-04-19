@@ -6,9 +6,9 @@ extern uLog theLog;
 STMPE811::STMPE811(uint8_t theChipSelect) : chipSelect{theChipSelect} {
 }
 
-void STMPE811::initialize()        // Based on AN2807, but adapted for polling io interrupt driven
+bool STMPE811::initialize()
 {
-    theLog.output(loggingLevel::Info, "STMPE811::initialize()");
+//    theLog.output(loggingLevel::Info, "STMPE811::initialize()");
 
     pinMode(chipSelect, OUTPUT);           // set chipSelect as output from MCU to STMPE
     digitalWrite(chipSelect, HIGH);        // disable chipSelect - active low signal
@@ -24,6 +24,7 @@ void STMPE811::initialize()        // Based on AN2807, but adapted for polling i
 
     if (0x811 != getVersion()) {
         theLog.output(loggingLevel::Error, "Could not Initialize STMPE811");
+        return false;
     } else {
         theLog.snprintf(loggingLevel::Debug, "STMPE811 Version = 0x%04X, using SPI Mode %d", getVersion(), theSpiMode);
     }
@@ -43,6 +44,7 @@ void STMPE811::initialize()        // Based on AN2807, but adapted for polling i
 
     write8(FIFO_CTRL_STA, 0b00000001);        // reset the FIFO
     write8(FIFO_CTRL_STA, 0x00);              // AN2807 : "Write 0x00 to put the FIFO back into operation mode."
+    return true;
 }
 
 boolean STMPE811::isTouched() {

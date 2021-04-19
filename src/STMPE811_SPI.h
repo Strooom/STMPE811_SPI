@@ -24,7 +24,7 @@
 class STMPE811 {
   public:
     explicit STMPE811(uint8_t chipSelect);        // Constructor
-    void initialize();                            // initialize the STMPE811
+    bool initialize();                            // initialize the STMPE811
     uint16_t getVersion();                        // reads the CHIP_ID register from the device and should always read 0x0811
     uint8_t getRevision();                        // reads the ID_VER register from the device
     boolean isTouched();                          // returns true if screen is currently touched
