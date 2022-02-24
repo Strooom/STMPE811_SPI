@@ -1,8 +1,5 @@
 #include "STMPE811_SPI.h"
 
-#include <logging.h>
-extern uLog theLog;
-
 STMPE811::STMPE811(uint8_t theChipSelect) : chipSelect{theChipSelect} {
 }
 
@@ -23,10 +20,7 @@ bool STMPE811::initialize()
     }
 
     if (0x811 != getVersion()) {
-        theLog.output(subSystems::general, loggingLevel::Error, "Could not Initialize STMPE811");
         return false;
-    } else {
-        theLog.snprintf(subSystems::general, loggingLevel::Debug, "STMPE811 Version = 0x%04X, using SPI Mode %d", getVersion(), theSpiMode);
     }
 
     write8(ADC_CTRL1, 0b01001000);             // ADC conversion time in 80 clock ticks, 12-bit resolution, internal reference
