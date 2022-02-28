@@ -1,5 +1,4 @@
-#include <STMPE811_SPI.h>
-#include "logging.h"
+#include "STMPE811_SPI.h"
 
 #define chipSelectPin 25
 
